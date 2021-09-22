@@ -1,0 +1,22 @@
+.addition-wrapper {
+  width: 165px;
+  padding-inline: 5px;
+  height: 100%;
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addition-wrapper .coin-containers-row {
+  display: flex;
+  justify-content: flex-start;
+  width: 65%;
+}
+
+.addition-wrapper .title {
+  width: 45%;
+  word-wrap: break-word;
+  margin-block-end: 5px;
+}

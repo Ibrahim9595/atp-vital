@@ -1,0 +1,14 @@
+.dot-spacer-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dot-spacer-wrapper .dot {
+  width: 5px;
+  height: 5px;
+  margin-inline: 2px;
+  background-color: #000000;
+  opacity: 0.25;
+  border-radius: 50%;
+}

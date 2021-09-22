@@ -1,0 +1,35 @@
+.coin-container-wrapper {
+  color: black;
+  margin-inline-end: 5px;
+}
+
+.coin-container-wrapper .coin-container {
+  padding: 7px;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: white;
+  margin: auto;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+}
+
+.coin-container-wrapper .title-top {
+  margin-bottom: 5px;
+}
+
+.coin-container-wrapper .coin-container-title {
+  color: white;
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin: auto;
+  margin-top: 1.5px;
+  font-size: 10px;
+  height: 40px;
+}

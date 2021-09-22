@@ -1,0 +1,115 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.game .wrapper {
+  color: white;
+}
+
+.game .wrapper .row-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 350px;
+  width: 640px;
+  margin-bottom: 30px;
+}
+
+.game .wrapper .row-left,
+.game .wrapper .bottom-wrapper {
+  height: 100%;
+  width: 535px;
+  padding: 5px;
+  background-color: #d9d9d9;
+  box-shadow: 0 2px 4px #bcb5b5;
+}
+
+.game .wrapper .bottom-wrapper {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.game .wrapper .row-right {
+  height: 100%;
+  width: 83px;
+  margin-inline-start: 15px;
+}
+
+.game .wrapper .row-left .production,
+.game .wrapper .row-right .production-out {
+  width: 100%;
+  background-color: #00aeef;
+  margin-bottom: 20px;
+}
+
+.game .wrapper .row-left .production {
+  width: calc(100% - 20px);
+  height: 175px;
+  padding-top: 30px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.game .wrapper .row-left .production::after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  right: -15px;
+  top: 135px;
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
+  border-left: 16px solid #00aeef;
+}
+
+.game .wrapper .row-right .production-out {
+  height: 120px;
+  overflow: hidden;
+  padding-top: 85px;
+}
+
+.game .wrapper .row-left .production .title {
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 35px;
+}
+
+.game .wrapper .row-left .cash-out,
+.game .wrapper .cash-in {
+  height: 120px;
+  width: 100%;
+  background-color: #f5821e;
+  position: relative;
+}
+
+.game .wrapper .cash-in::before,
+.game .wrapper .row-left .cash-out::before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: -15px;
+  top: calc(50% - 10px);
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
+  border-right: 16px solid #a7a9ac;
+}
+
+.game .wrapper .row-left .cash-out {
+  width: calc(100% - 80px);
+  padding-inline: 40px;
+}
+
+.game .wrapper .row-left .cash-out::before {
+  border-right: 16px solid #f5821e;
+}
+
+.game .wrapper .cash-in {
+  background-color: #a7a9ac;
+}
