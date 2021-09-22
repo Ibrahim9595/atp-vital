@@ -19,5 +19,8 @@ export const StartGame =
       const game = await GameModel.findOneQuery({ team: `team${team}` });
       socket.join(`team${team}`);
       io.to(`team${team}`).emit("game-started", game);
+    } else {
+      console.log("Error");
+      socket.emit("error", "Wrong team");
     }
   };

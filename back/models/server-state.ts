@@ -1,3 +1,7 @@
+/**
+ * This class is to handle the server state to enforce some rules and help fetch and update the users and teams
+ */
+
 export interface Player {
   userId: number;
   socketId: string;
@@ -22,13 +26,16 @@ export class ServerState {
 
   addPlayer(player: Player, team: string) {
     const selectedTeam = this.state[team as keyof IServerState];
+    if (!selectedTeam) return false;
     const oldPlayer = selectedTeam.find(
       (el: Player) => el.userId === player.userId
     );
 
+    console.log(selectedTeam, oldPlayer);
+
     if (
-      selectedTeam &&
-      (selectedTeam.length === 2 || oldPlayer) &&
+      selectedTeam.length === 2 ||
+      oldPlayer ||
       ![1, 2, 3, 4].includes(player.userId)
     )
       return false;

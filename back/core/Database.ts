@@ -8,7 +8,6 @@ class DBWrapper {
 
   async connect() {
     if (this.db === null) {
-      console.log("connected");
       this.__client = new MongoClient(
         (config as any)[config.env].database.uri,
         {}
@@ -20,7 +19,6 @@ class DBWrapper {
   }
 
   async close() {
-    console.log("closed");
     if (this.db && this.__client) {
       await this.__client.close();
       this.__client = null;

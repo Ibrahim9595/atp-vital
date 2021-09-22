@@ -16,8 +16,8 @@ export const Play =
     if (playerAndTeamAndNextPlayer !== null) {
       const {
         team,
-        player: { userId, socketId },
-        nextPlayer: { userId: nextUserId, socketId: nextSocketId },
+        player: { userId },
+        nextPlayer: { userId: nextUserId },
       } = playerAndTeamAndNextPlayer;
 
       const game: GameState = await GameModel.findOneQuery({
@@ -25,14 +25,19 @@ export const Play =
       });
 
       if (game.currentPlayer === userId) {
-        const newState = await GameModel.update(
+        await GameModel.update(
           {
             gameBoard: { ...game.gameBoard, ...change },
             currentPlayer: nextUserId,
           },
           { team }
         );
-        io.to(team).emit("played", newState);
+
+        io.to(team).emit("played", {
+          ...game,
+          gameBoard: { ...game.gameBoard, ...change },
+          currentPlayer: nextUserId,
+        });
       } else {
         io.to(team).emit("played", game);
       }

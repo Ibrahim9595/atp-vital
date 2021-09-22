@@ -35,7 +35,6 @@ export class BaseModel {
       }
     );
 
-    console.log(res);
     return res.value;
   }
 }
