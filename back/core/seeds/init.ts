@@ -6,6 +6,7 @@ const db = async () => {
 
 const InitProject = async () => {
   const conn = await db();
+  await conn.deleteMany({ team: { $regex: "team" } });
   await conn.insertMany([
     {
       currentPlayer: 2,
