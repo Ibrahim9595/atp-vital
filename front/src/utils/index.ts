@@ -13,6 +13,15 @@ export interface GameBoardState {
   liabilities: number;
   taxes: number;
 }
+
+export interface GameState {
+  id: string;
+  gameBoard: GameBoardState;
+  currentPlayer: number;
+  myId: number;
+  team: "team1" | "team2"
+}
+
 type CoinContainerId = keyof GameBoardState;
 
 export enum DraggableTypes {

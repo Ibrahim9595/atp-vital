@@ -1,40 +1,49 @@
-import { useState } from "react";
 import "./App.css";
+import { useEffect, useState } from "react";
 import { Game } from "./components/game";
+import { io } from "socket.io-client";
+import { GameBoardState, GameState } from "./utils";
 
-const GAME_STATE = {
-  stockOfMaterials: 8,
-  manufacturing: 6,
-  assembly: 8,
-  stock: 20,
-  goodsSold: 24,
-  cash: 14,
-  accounts: 0,
-  RMP: 60,
-  dividends: 0,
-  equity: 0,
-  interest: 6,
-  liabilities: 60,
-  taxes: 2,
-};
+const socket = io("http://localhost:5000");
 
 function App() {
-  const [state, setState] = useState(GAME_STATE);
+  const [state, setState] = useState<GameState | null>(null);
+  useEffect(() => {
+    socket.emit("start-game", { userId: 1, team: 1 });
+    socket.on("game-started", (gameState: GameState) => setState(gameState));
+    socket.on("played", (gameState: GameState) => setState(gameState));
+    socket.on("error", (d) => {
+      console.log(d);
+    });
+  }, []);
+
+  const emitChange = (change: Partial<GameBoardState>) => {
+    socket.emit("play", change);
+  };
+
   return (
     <div className="App">
-      <Game
-        boardState={state}
-        onValueChange={(e) => {
-          const toBeCommitted = e.reduce((p, el) => {
-            const current = state[el.id];
-            const newVal =
-              el.op === "+" ? current + el.value : current - el.value;
-            return Object.assign(p, { [el.id]: newVal });
-          }, {});
+      {state ? (
+        <Game
+          boardState={state.gameBoard}
+          onValueChange={(e) => {
+            const toBeCommitted = e.reduce((p, el) => {
+              const current = state.gameBoard[el.id];
+              const newVal =
+                el.op === "+" ? current + el.value : current - el.value;
+              return Object.assign(p, { [el.id]: newVal });
+            }, {});
 
-          setState({ ...state, ...toBeCommitted });
-        }}
-      />
+            setState({
+              ...state,
+              gameBoard: { ...state.gameBoard, ...toBeCommitted },
+            });
+            emitChange(toBeCommitted);
+          }}
+        />
+      ) : (
+        <>Loading...</>
+      )}
     </div>
   );
 }
