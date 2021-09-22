@@ -4,7 +4,7 @@ import { Game } from "./components/game";
 import { io } from "socket.io-client";
 import { GameBoardState, GameState } from "./utils";
 
-const socket = io("http://localhost:5000");
+const socket = io(process.env.REACT_APP_SERVER_URL || "");
 
 function App() {
   const [state, setState] = useState<GameState | null>(null);

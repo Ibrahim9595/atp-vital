@@ -6,7 +6,8 @@
   "author": "Ibrahim Mamdouh",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon index.ts"
+    "start": "nodemon index.ts",
+    "seed": "ts-node ./core/seeds/init.ts"
   },
   "devDependencies": {
     "@types/socket.io": "^3.0.2",
